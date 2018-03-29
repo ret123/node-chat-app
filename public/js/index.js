@@ -1,15 +1,12 @@
 var socket = io();
-socket.on('connect', () => {
+socket.on('connect', function() {
     console.log('Connected to the Server');
 
 });
-socket.emit('createMessage', {
-    from: 'rathish',
-    text: 'hello from client'
-});
-socket.on('disconnect', () => {
+
+socket.on('disconnect', function() {
     console.log('Disconnected from Server');
 });
-socket.on('newMessage', (message) => {
+socket.on('newMessage', function(message) {
     console.log('newMessage', message);
 });

@@ -15,18 +15,17 @@ io.on('connection', (socket) => {
     console.log("New User connected");
     socket.on('createMessage', (message) => {
         console.log(message);
-    })
+        io.emit('newMessage',  {
+        from: message.from,
+        text: message.text,
+        createdAt: new Date().getTime() 
+        });
+    });
     socket.on('disconnect', () => {
         console.log('User Disconnected');
     });
-    socket.emit('newMessage', {
-        from: 'ret',
-        text: 'hi from other user',
-        createdAt: 67678
-    });
+    
 });
-
-
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
